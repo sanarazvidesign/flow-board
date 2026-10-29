@@ -1,0 +1,13 @@
+# Flow Board
+
+> Flow Board is a simple, private Kanban board web app for tracking tasks across four columns: Backlog, In Progress, In Review and Done.
+
+## What it does
+- Create, edit, delete (with undo) and move task cards, by drag-and-drop or a keyboard-accessible dropdown.
+- Each card has a title, assignee, priority (High, Medium, Low), due date and tags.
+- Filter by tag and search by title or assignee. Overdue cards are highlighted.
+- Accessible: keyboard operable, screen-reader labelled, WCAG 2.2 AA colour contrast.
+
+## Access and privacy
+- Sign-in with email and password is required. Each user can only read and write their own cards (enforced by database row level security).
+- Only the sign-in/landing page is public. Boards are private and not indexable.
