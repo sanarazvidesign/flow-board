@@ -62,6 +62,14 @@ describe('AuthGate', () => {
     expect(screen.getByLabelText('Email')).toHaveAttribute('aria-invalid', 'true')
   })
 
+  it('REGRESSION: sign-up confirmation links return to the origin the user signed up from (local, preview or production)', async () => {
+    const user = renderGate()
+    await user.click(await screen.findByRole('button', { name: 'Need an account? Sign up' }))
+    await fill(user)
+    await user.click(screen.getByRole('button', { name: 'Sign up' }))
+    expect(auth.signUp).toHaveBeenCalledWith({ email: 'a@b.co', password: 'password1', options: { emailRedirectTo: window.location.origin } })
+  })
+
   it('REGRESSION: failed sign-up is generic too', async () => {
     auth.signUp.mockResolvedValue({ data: {}, error: { message: 'User already registered' } })
     const user = renderGate()

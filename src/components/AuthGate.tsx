@@ -40,7 +40,7 @@ export function AuthGate({ children }: { children: ReactNode }) {
     setBusy(true)
     setMessage(null)
     const creds = { email: email.trim(), password }
-    const { data, error } = mode === 'sign-in' ? await supabase.auth.signInWithPassword(creds) : await supabase.auth.signUp(creds)
+    const { data, error } = mode === 'sign-in' ? await supabase.auth.signInWithPassword(creds) : await supabase.auth.signUp({ ...creds, options: { emailRedirectTo: window.location.origin } })
     setBusy(false)
     if (error) {
       // Keep it generic: don't reveal whether an account exists.
