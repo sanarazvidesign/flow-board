@@ -35,7 +35,7 @@ describe('AuthGate', () => {
     auth.getSession.mockResolvedValue({ data: { session: { user: {} } } })
     renderGate()
     expect(await screen.findByText('secret board')).toBeInTheDocument()
-    expect(document.title).toBe('Flow Board')
+    await waitFor(() => expect(document.title).toBe('Flow Board'))
   })
 
   it('shows the sign-in form (not the board) when signed out', async () => {
